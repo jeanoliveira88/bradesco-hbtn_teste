@@ -44,6 +44,13 @@ public class PersonTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {"Abc@123", "12$@hbt"})
+    public void does_not_have_eight_chars(String password) {
+        assertFalse(person.checkPassword(password));
+    }
+
+
+    @ParameterizedTest
     @ValueSource(strings = {"abC123456$", "Hbtn@1234", "Betty@1#2", "Hbtn@123"})
     public void check_password_valid(String password) {
         assertTrue(person.checkPassword(password));
